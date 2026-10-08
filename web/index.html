@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Chat Hub – download</title>
+<style>
+:root{--bg:#05080F;--panel:#0A1628;--line:rgba(0,229,255,.28);--cyan:#00E5FF;--gold:#FFB400;--text:#D8F6FF;--dim:#6F8FA3}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,sans-serif;padding:24px 16px}
+main{max-width:640px;margin:0 auto}h1{color:var(--cyan);letter-spacing:3px;font-size:20px;margin:0 0 4px}
+p.sub{color:var(--dim);margin:0 0 20px}.det{font-size:13px;color:var(--dim);margin:0 0 10px}
+.tabs{display:flex;gap:10px;margin-bottom:16px}.tab{flex:1;padding:14px;border-radius:12px;border:1px solid var(--line);background:transparent;color:var(--text);font:inherit;font-weight:700;cursor:pointer}
+.tab.on{border-color:var(--gold);color:var(--gold);background:rgba(255,180,0,.1)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}
+.dl{display:block;text-align:center;background:var(--gold);color:#001018;font-weight:800;letter-spacing:1px;padding:14px;border-radius:10px;text-decoration:none;margin-bottom:14px}
+ol{padding-left:20px;margin:0}li{margin:8px 0}code{background:rgba(255,255,255,.1);padding:1px 6px;border-radius:4px}
+.note{color:var(--dim);font-size:13px;margin-top:14px}[hidden]{display:none}
+</style></head><body><main>
+<h1>AI CHAT HUB</h1>
+<p class="sub">One chat for Claude, ChatGPT, Gemini, Perplexity and Grok. It sends your command to the real site and brings the reply back. No server, no API keys.</p>
+<p class="det" id="det"></p>
+<div class="tabs"><button class="tab" data-os="android">Android</button><button class="tab" data-os="pc">Windows / Mac / Linux</button></div>
+<section class="card" id="android" hidden>
+<a class="dl" id="apk" href="#">⬇ DOWNLOAD ANDROID APP (APK)</a>
+<ol><li>Open the downloaded file. If Android asks, allow <b>install unknown apps</b> for your browser.</li>
+<li>Open the app, pick a provider (for example ChatGPT) and tap <b>BROWSER</b>.</li>
+<li>Log in to the site once, then tap <b>DONE</b>.</li>
+<li>Type a command in the chat. The app sends it to the site and shows the reply.</li></ol>
+<p class="note">Download link works after the APK has been built in GitHub (Actions → Build APK).</p></section>
+<section class="card" id="pc" hidden>
+<a class="dl" href="downloads/AI-Chat-Hub-extension.zip">⬇ DOWNLOAD PC EXTENSION (ZIP)</a>
+<ol><li>Unzip the file into a folder.</li>
+<li>In Chrome, Edge or Brave open <code>chrome://extensions</code> (Edge: <code>edge://extensions</code>) and turn on <b>Developer mode</b>.</li>
+<li>Tap <b>Load unpacked</b> and choose the folder.</li>
+<li>Click the extension icon, tap <b>OPEN AI SITES</b> and log in to each site once.</li>
+<li>Type a command in the chat window. It goes to the site and the reply comes back.</li></ol>
+<p class="note">Firefox: rename <code>manifest.firefox.json</code> to <code>manifest.json</code>, then use <code>about:debugging</code> → This Firefox → Load Temporary Add-on.</p></section>
+<p class="note" id="ios" hidden>iPhone and iPad are not supported.</p>
+<script>
+var REPO='officialpradyumnapol/PROJECT-ETHAN';
+document.getElementById('apk').href='https://github.com/'+REPO+'/releases/latest/download/app-debug.apk';
+var ua=navigator.userAgent,uad=navigator.userAgentData&&navigator.userAgentData.platform||'';
+var guess=/iPhone|iPad|iPod/i.test(ua)?'ios':(/Android/i.test(ua)||uad==='Android'||(/Linux/i.test(ua)&&navigator.maxTouchPoints>1))?'android':'pc';
+function show(os){
+  ['android','pc'].forEach(function(k){document.getElementById(k).hidden=k!==os});
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.toggle('on',t.dataset.os===os)});
+}
+document.querySelectorAll('.tab').forEach(function(t){t.onclick=function(){show(t.dataset.os)}});
+document.getElementById('det').textContent='Detected: '+({android:'Android',pc:'Windows / Mac / Linux',ios:'iPhone / iPad'}[guess])+'. Wrong? Pick yours below.';
+document.getElementById('ios').hidden=guess!=='ios';
+show(guess==='android'?'android':'pc');
+</script></main></body></html>

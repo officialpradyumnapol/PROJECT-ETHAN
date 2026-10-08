@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "AI Chat Hub",
+  "version": "2.0.0",
+  "description": "One chat window for Claude, ChatGPT, Gemini, Perplexity and Grok using your logged-in accounts. No server, no APIs.",
+  "permissions": ["tabs", "storage"],
+  "host_permissions": [
+    "https://chatgpt.com/*", "https://chat.openai.com/*", "https://claude.ai/*",
+    "https://gemini.google.com/*", "https://www.perplexity.ai/*", "https://grok.com/*"
+  ],
+  "background": { "scripts": ["background.js"] },
+  "action": { "default_title": "Open AI Chat Hub" },
+  "content_scripts": [{
+    "matches": [
+      "https://chatgpt.com/*", "https://chat.openai.com/*", "https://claude.ai/*",
+      "https://gemini.google.com/*", "https://www.perplexity.ai/*", "https://grok.com/*"
+    ],
+    "js": ["content.js"],
+    "run_at": "document_idle"
+  }],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "ai-chat-hub@local",
+      "strict_min_version": "128.0",
+      "data_collection_permissions": { "required": ["websiteContent", "technicalAndInteraction"] }
+    },
+    "gecko_android": {}
+  }
+}

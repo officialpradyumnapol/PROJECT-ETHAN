@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Chat Hub</title>
+<style>
+:root{--bg:#05080F;--panel:#0A1628;--line:rgba(0,229,255,.28);--cyan:#00E5FF;--gold:#FFB400;--red:#FF4D4D;--text:#D8F6FF;--dim:#6F8FA3;--accent:#FFB400}
+*{box-sizing:border-box}html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--text);font:15px system-ui,sans-serif;display:flex;flex-direction:column}
+header{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--line)}
+h1{margin:0;font-size:15px;letter-spacing:3px;color:var(--cyan)}
+header .sp{flex:1}button{font:inherit;cursor:pointer}
+.hbtn{background:none;border:0;color:var(--cyan);font-weight:700;font-size:13px;padding:6px}
+#chips{display:flex;gap:8px;overflow-x:auto;padding:8px 12px}
+.chip{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:18px;border:1px solid var(--line);background:transparent;color:var(--text);white-space:nowrap}
+.dot{width:8px;height:8px;border-radius:50%}
+#list{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px}
+.empty{color:var(--dim);margin:auto;max-width:420px;text-align:center;line-height:1.5}
+.bubble{max-width:92%;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--panel)}
+.mine{align-self:flex-end}.ai{align-self:flex-start;width:min(92%,820px)}
+.who-row{display:flex;gap:8px;align-items:center;margin-bottom:4px;font-size:12px}
+.who{font-weight:800;letter-spacing:1px}.state{color:var(--dim)}
+.who-row button{background:none;border:0;color:var(--dim);font-size:11px;padding:2px 6px}
+.stop{color:var(--red)!important}.msg{line-height:1.5;overflow-wrap:anywhere}.err{color:var(--red)}
+.msg p{margin:.4em 0}.msg code{background:rgba(255,255,255,.08);padding:1px 5px;border-radius:4px}
+.codebox{margin:8px 0;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.codehead{display:flex;justify-content:space-between;padding:4px 10px;background:rgba(0,229,255,.08);font-size:11px;color:var(--dim)}
+.codehead button{background:none;border:0;color:var(--cyan);font-size:11px}
+pre{margin:0;padding:10px;overflow-x:auto}pre code{background:none;padding:0}
+a.file{display:block;margin-top:8px;padding:8px;border:1px solid var(--gold);border-radius:8px;color:var(--gold);text-decoration:none;font-weight:600;overflow-wrap:anywhere}
+#attach{color:var(--gold);font-size:12px;padding:0 14px 4px}#attach button{background:none;border:0;color:var(--red)}
+#bar{display:flex;gap:8px;align-items:flex-end;padding:10px;border-top:1px solid var(--line)}
+.sq{width:42px;height:42px;border-radius:10px;border:1px solid var(--line);background:none;color:var(--cyan);font-weight:800;font-size:12px}
+.sq.on{border-color:var(--gold);color:var(--gold)}
+#text{flex:1;min-height:42px;max-height:160px;resize:none;color:var(--text);background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit}
+#send{height:42px;padding:0 16px;border:0;border-radius:10px;background:var(--accent);color:#001018;font-weight:800;letter-spacing:1px}
+#note{color:var(--dim);font-size:11px;padding:0 14px 8px}
+</style></head><body>
+<header><h1>AI CHAT HUB</h1><span class="sp"></span>
+<button class="hbtn" id="openall" title="Open all five AI sites so you can log in">OPEN AI SITES</button>
+<button class="hbtn" id="clear">CLEAR</button></header>
+<div id="chips"></div>
+<div id="list"></div>
+<div id="attach" hidden></div>
+<div id="bar"><button class="sq" id="plus" title="Attach files">＋</button><button class="sq" id="newc" title="Start a new conversation">NEW</button>
+<textarea id="text" rows="1"></textarea><button id="send">SEND</button><input type="file" id="file" multiple hidden></div>
+<div id="note">Uses your logged-in accounts in other tabs. Keep those tabs open (they can stay in the background).</div>
+<script src="chat.js"></script></body></html>
