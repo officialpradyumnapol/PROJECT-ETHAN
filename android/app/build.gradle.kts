@@ -44,8 +44,6 @@ kotlin {
     }
 }
 
-// GeckoView 157 pulls androidx.core 1.19.0, which needs AGP 9.1+.
-// Keep core on a version that works with AGP 8.13.
 configurations.all {
     resolutionStrategy {
         force("androidx.core:core:1.16.0")
